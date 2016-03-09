@@ -1,6 +1,6 @@
 //
 //  DKCommonCtrl.m
-//  MyQQDemo
+//  UIView
 //
 //  Created by 李登科 on 16/1/13.
 //  Copyright (c) 2016年 李登科. All rights reserved.
