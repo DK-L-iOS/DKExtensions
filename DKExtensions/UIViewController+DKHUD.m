@@ -9,8 +9,6 @@
 #import "UIViewController+DKHUD.h"
 #import "MBProgressHUD.h"
 
-#define IMAGE_URL(name) [NSString stringWithFormat:@"%@/DKProgressHUD.bundle/%@",[[NSBundle mainBundle] resourcePath],name]
-
 @implementation UIViewController (DKHUD)
 /**
  *  显示成功提示框
@@ -24,7 +22,7 @@
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
     
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_URL(@"success-white")]];
+     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success-white"]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.0];
 }
@@ -40,7 +38,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_URL(@"error-white")]];
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error-white"]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.5];
 }
