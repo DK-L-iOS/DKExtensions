@@ -2,12 +2,14 @@
 //  UIViewController+DKHUD.m
 //  DKProgressHUD
 //
-//  Created by 李登科 on 16/2/19.
-//  Copyright © 2016年 李登科. All rights reserved.
+//  Created by DK-Li on 16/1/13.
+//  Copyright (c) 2016年 DK-Li. All rights reserved.
 //
 
 #import "UIViewController+DKHUD.h"
 #import "MBProgressHUD.h"
+
+#define IMAGE_NAME(image_name) [[[NSBundle mainBundle] pathForResource:@"DKProgressHUD" ofType:@"bundle"] stringByAppendingPathComponent:image_name]
 
 @implementation UIViewController (DKHUD)
 /**
@@ -21,8 +23,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
-    
-     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"success-white"]];
+     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_NAME(@"success-white")]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.0];
 }
@@ -38,7 +39,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"error-white"]];
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_NAME(@"error-white")]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.5];
 }

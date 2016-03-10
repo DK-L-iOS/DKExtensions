@@ -2,8 +2,8 @@
 //  UIImage+DKExtensions.m
 //  UIImage
 //
-//  Created by 李登科 on 16/1/28.
-//  Copyright (c) 2016年 李登科. All rights reserved.
+//  Created by DK-Li on 16/1/13.
+//  Copyright (c) 2016年 DK-Li. All rights reserved.
 //
 
 #import "UIImage+DKExtensions.h"

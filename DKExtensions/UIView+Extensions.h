@@ -2,8 +2,8 @@
 //  UIView+Extensions.h
 //  UIView
 //
-//  Created by 李登科 on 16/1/21.
-//  Copyright © 2016年 李登科. All rights reserved.
+//  Created by DK-Li on 16/1/13.
+//  Copyright (c) 2016年 DK-Li. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
