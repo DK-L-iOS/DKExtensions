@@ -9,8 +9,6 @@
 #import "UIViewController+DKHUD.h"
 #import "MBProgressHUD.h"
 
-#define IMAGE_NAME(image_name) [[[NSBundle mainBundle] pathForResource:@"DKProgressHUD" ofType:@"bundle"] stringByAppendingPathComponent:image_name]
-
 @implementation UIViewController (DKHUD)
 /**
  *  显示成功提示框
@@ -23,7 +21,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
-     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_NAME(@"success-white")]];
+     hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[self pathOfIsSuccess:YES]]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.0];
 }
@@ -39,7 +37,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.color = [UIColor grayColor];
     hud.mode = MBProgressHUDModeCustomView;
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:IMAGE_NAME(@"error-white")]];
+    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[self pathOfIsSuccess:NO]]];
     hud.labelText = title;
     [hud hide:YES afterDelay:1.5];
 }
@@ -63,6 +61,26 @@
 - (void)hideHUD
 {
     [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+/**
+ *  加载资源路径
+ *
+ *  @param isSuccess 是否是成功
+ *
+ *  @return 资源路径
+ */
+- (NSString *)pathOfIsSuccess:(BOOL)isSuccess
+{
+    NSString *imageName = isSuccess? @"success-white" : @"error-white";
+    
+    NSString *path = [[[NSBundle mainBundle] pathForResource:@"DKExtensions" ofType:@"bundle"] stringByAppendingPathComponent:imageName];
+    
+    if (!path) {
+        path = [[[NSBundle mainBundle] pathForResource:@"DKProgressHUD" ofType:@"bundle"] stringByAppendingPathComponent:imageName];
+    }
+
+    return path;
 }
 
 @end
