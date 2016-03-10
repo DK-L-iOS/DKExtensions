@@ -35,6 +35,26 @@ typedef NS_ENUM(NSInteger,DKCropImageStyle){
 @interface UIImage (DKExtensions)
 
 /**
+ *  保持原来的长宽比，生成一个缩略图
+ *
+ *  @param image 需要处理的图片
+ *  @param asize 新图片的大小
+ *
+ *  @return 返回新生成的图片
+ */
++ (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)asize;
+
+/**
+ *  自动缩放到指定大小
+ *
+ *  @param image 需要处理的图片
+ *  @param asize 制定尺寸
+ *
+ *  @return 返回新生成的图片
+ */
++ (UIImage *)thumbnailWithImage:(UIImage *)image size:(CGSize)asize;
+
+/**
  *  切割图片
  *
  *  @param style 切割样式

@@ -10,6 +10,115 @@
 
 @implementation UIImage (DKExtensions)
 
+/**
+ *  保持原来的长宽比，生成一个缩略图
+ *
+ *  @param image 需要处理的图片
+ *  @param asize 新图片的大小
+ *
+ *  @return 返回新生成的图片
+ */
++ (UIImage *)thumbnailWithImageWithoutScale:(UIImage *)image size:(CGSize)asize
+{
+    UIImage *newimage;
+    
+    if (nil == image) {
+        
+        newimage = nil;
+        
+    }
+    else
+    {
+        
+        CGSize oldsize = image.size;
+        
+        CGRect rect;
+        
+        if (asize.width/asize.height > oldsize.width/oldsize.height) {
+            
+            rect.size.width = asize.height*oldsize.width/oldsize.height;
+            
+            rect.size.height = asize.height;
+            
+            rect.origin.x = (asize.width - rect.size.width)/2;
+            
+            rect.origin.y = 0;
+            
+        }
+        else
+        {
+            
+            rect.size.width = asize.width;
+            
+            rect.size.height = asize.width*oldsize.height/oldsize.width;
+            
+            rect.origin.x = 0;
+            
+            rect.origin.y = (asize.height - rect.size.height)/2;
+            
+        }
+        
+        //开始绘图生成水印图片
+        
+        UIGraphicsBeginImageContext(asize);
+        
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        CGContextSetFillColorWithColor(context, [[UIColor clearColor] CGColor]);
+        
+        UIRectFill(CGRectMake(0, 0, asize.width, asize.height));//clear background
+        
+        [image drawInRect:rect];
+        
+        newimage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        //结束绘图
+        
+        UIGraphicsEndImageContext();
+        
+    }
+    
+    return newimage;
+}
+
+/**
+ *  自动缩放到指定大小
+ *
+ *  @param image 需要处理的图片
+ *  @param asize 制定尺寸
+ *
+ *  @return 返回新生成的图片
+ */
++ (UIImage *)thumbnailWithImage:(UIImage *)image size:(CGSize)asize
+{
+    UIImage *newimage;
+    
+    if (nil == image) {
+        
+        newimage = nil;
+    }
+    else
+    {
+        UIGraphicsBeginImageContext(asize);
+        
+        [image drawInRect:CGRectMake(0, 0, asize.width, asize.height)];
+        
+        newimage = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+    }
+    
+    return newimage;
+}
+
+/**
+ *  切割图片
+ *
+ *  @param style 切割样式
+ *
+ *  @return 切割后的图片
+ */
 - (UIImage *)imageByCroppingWithStyle:(DKCropImageStyle)style
 {
     CGRect rect;
@@ -93,6 +202,14 @@
     return cropImage;
 }
 
+
+/**
+ *  切割图片
+ *
+ *  @param rect 切割的范围
+ *
+ *  @return 切割后的图片
+ */
 - (UIImage *)clipImageInRect:(CGRect)rect
 {
     CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], rect);
