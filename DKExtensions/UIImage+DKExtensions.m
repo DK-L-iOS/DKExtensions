@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+DKExtensions.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation UIImage (DKExtensions)
 
@@ -216,6 +217,40 @@
     UIImage *thumbScale = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
     return thumbScale;
+}
+
+/**
+ *  获取视频第一帧图片
+ *
+ *  @param videoURL 视频URL
+ *
+ *  @return 返回第一帧图片
+ */
++ (UIImage *)getImage:(NSString *)videoURL
+
+{
+    
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:videoURL] options:nil];
+    
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    
+    gen.appliesPreferredTrackTransform = YES;
+    
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    
+    NSError *error = nil;
+    
+    CMTime actualTime;
+    
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    
+    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
+    
+    CGImageRelease(image);
+    
+    return thumb;
+    
+    
 }
 
 

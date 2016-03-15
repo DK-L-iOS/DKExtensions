@@ -72,6 +72,15 @@ typedef NS_ENUM(NSInteger,DKCropImageStyle){
  */
 - (UIImage *)clipImageInRect:(CGRect)rect;
 
+/**
+ *  获取视频第一帧图片
+ *
+ *  @param videoURL 视频URL
+ *
+ *  @return 返回第一帧图片
+ */
++ (UIImage *)getImage:(NSString *)videoURL;
+
 @end
 
 
