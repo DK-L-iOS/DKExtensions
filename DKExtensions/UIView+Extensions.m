@@ -71,6 +71,18 @@
     return self.frame.origin;
 }
 
+- (CGFloat)rightX
+{
+    CGRect frame = self.frame;
+    return frame.origin.x + frame.size.width;
+}
+
+- (CGFloat)bottomY
+{
+    CGRect frame = self.frame;
+    return frame.origin.y + frame.size.height;
+}
+
 /**
  * 尺寸
  */

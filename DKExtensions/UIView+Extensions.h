@@ -17,6 +17,8 @@
 @property(nonatomic, assign) CGFloat centerX;
 @property(nonatomic, assign) CGFloat centerY;
 @property(nonatomic, assign) CGPoint origin;
+@property(nonatomic, assign, readonly) CGFloat rightX;
+@property(nonatomic, assign, readonly) CGFloat bottomY;
 
 /**
  * 尺寸
@@ -38,6 +40,6 @@
 /**
  * 设置圆角
  */
-- (void)setCornerRadius:(CGFloat)radius andBorderColor:(UIColor *)color  andBorderWidth:(CGFloat)width;
+- (void)setCornerRadius:(CGFloat)radius andBorderColor:(UIColor *)color andBorderWidth:(CGFloat)width;
 
 @end

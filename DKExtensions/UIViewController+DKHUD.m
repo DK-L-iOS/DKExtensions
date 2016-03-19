@@ -72,14 +72,15 @@
  */
 - (NSString *)pathOfIsSuccess:(BOOL)isSuccess
 {
+    
     NSString *imageName = isSuccess? @"success-white" : @"error-white";
     
-    NSString *path = [[[NSBundle mainBundle] pathForResource:@"DKExtensions" ofType:@"bundle"] stringByAppendingPathComponent:imageName];
+    NSString *path = [[[NSBundle mainBundle] pathForResource:@"DKExtensions" ofType:@"bundle"] stringByAppendingPathComponent:[NSString stringWithFormat:@"DKProgressHUD.bundle/%@",imageName]];
     
     if (!path) {
         path = [[[NSBundle mainBundle] pathForResource:@"DKProgressHUD" ofType:@"bundle"] stringByAppendingPathComponent:imageName];
     }
-
+    
     return path;
 }
 
